@@ -13,10 +13,15 @@ import IconButton from "../components/IconButton";
 
 function IndexPage({ location, search }) {
   console.log(location.search);
-  const params = new URLSearchParams(location.search.match(/\?.*/)[0]);
-  const deveui = params.get("eui");
-  const appeui = params.get("dev");
-  const appkey = params.get("key");
+  let deveui;
+  let appeui;
+  let appkey;
+  if (location.search) {
+    const params = new URLSearchParams(location.search.match(/\?.*/)[0]);
+    deveui = params.get("eui");
+    appeui = params.get("dev");
+    appkey = params.get("key");
+  }
 
   // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy);}}
 
@@ -36,17 +41,27 @@ function IndexPage({ location, search }) {
           src={imageLookup.LandingPageImage}
         />
         <div className="absolute flex flex-col w-full gap-6 p-6 top-1/5">
-          <div className="flex flex-col justify-center w-full h-40 p-5 bg-white rounded-md shadow-lg opacity-100">
-            New device found
-          </div>
-          <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
-            <div>Device Eui {deveui}</div>
-            <div>appeui Eui {appeui}</div>
-            <div>appkey Eui {appkey}</div>
-          </div>
-          <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
-            Add to Helium Console
-          </div>
+          {location.search ? (
+            <React.Fragment>
+              <div className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100">
+                New device found
+              </div>
+
+              <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
+                <div>Device Eui {deveui}</div>
+                <div>appeui Eui {appeui}</div>
+                <div>appkey Eui {appkey}</div>
+              </div>
+              <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
+                Add to Helium
+              </div>
+            </React.Fragment>
+          ) : (
+            <div className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100">
+              Scan device with NFC reader
+            </div>
+          )}
+
           <div className="flex justify-center w-full gap-4 md:h-40">
             <IconButton
               color="white"
