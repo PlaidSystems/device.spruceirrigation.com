@@ -1,0 +1,46 @@
+[
+	{
+		"name": "seo",
+		"title": "Pricing",
+		"subtitle": "Grow with more meaningful feedback",
+		"description": "Build better products with more meaningful feedback."
+	},
+	{
+		"name": "tierOne",
+		"title": "Simple Pricing:",
+		"subtitle": "One Plan, All Features",
+		"price": "$19",
+		"featureList": [			
+			"Unlimited users",
+			"Unlimited suggestions",
+			"Unlimited feedback requests",			
+			"includes 1 product board",
+			"includes 1 editor",			
+			"Curated feedback requests",
+			"Feedback Prioritization Chart",
+			"Automated follow-ups",
+			"RICE Prioritization",			
+			"Category, Status & Color Customization"
+		],
+		"CTA": {
+			"text": "Ready to discover insights on your product and user base?",
+			"CTAButtonText": "Start your free trial now",
+			"inputText": "Join the waitlist!",
+			"buttonText": "Notify me!"
+		}
+	},
+	{
+		"name": "tierTwo",
+		"title": "Scale",
+		"price": "$100",
+		"users": "4-10 users",
+		"featureList": [ "Quote Builder", "Job Costing", "Send, Track, Accept" ]
+	},
+	{
+		"name": "tierThree",
+		"title": "Enterprise",
+		"price": "Get in Touch",
+		"users": "10+ users",
+		"featureList": [ "Quote Builder", "Job Costing", "Send, Track, Accept" ]
+	}
+]

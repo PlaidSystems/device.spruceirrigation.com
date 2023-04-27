@@ -1,0 +1,29 @@
+[
+  {
+    "name": "embarkablelabs",
+    "title": "Product development lab",
+    "subtitle": "EmbarkableLabs",
+    "description": "Product development lab",
+    "icon": "rocket.png",
+    "SEO": {
+      "title": "Product development lab",
+      "image": "MetaImage"
+    },
+    "titleBlock": {
+      "title": "Build better products with more meaningful feedback.",
+      "subtitle": "Embarkable is the user feedback platform that goes beyond up-votes to provide insightful, actionable user feedback.",
+      "text": "Embarkable is a central repository for your user feedback. Engage with users to find out what they need - and why.",
+      "color": "bg-blue-200",
+      "image": "MeaningfulFeedbackGIF",
+      "CTAButtonText": "Try it free"
+    },
+    "CTA": {
+      "text": "Ready to discover insights on your product and user base?",
+      "CTAButtonText": "Get meaningful feedback",
+      "inputText": "Join the waitlist!",
+      "buttonText": "Notify me!"
+    },
+    "image": "QuoteSummary",
+    "color": "red"
+  }
+]

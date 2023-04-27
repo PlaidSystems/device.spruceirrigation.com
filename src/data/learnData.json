@@ -1,0 +1,42 @@
+[
+	{
+		"name": "use-case",
+		"link": "#use-case",
+		"title": "Use Cases",
+		"subtitle": "How will you use Embarkable?",
+		"description": "We built Embarkable to help get more meaningful feedback so you can build better products.",
+		"image": "metaImg",
+		"icon": "faBriefcase",
+		"color": "purple"
+	},
+	{
+		"name": "learn",
+		"link": "learn",
+		"title": "Knowledge Base",
+		"subtitle": "Tutorials and more",
+		"description": "Embarkable for product teams FAQ.",
+		"image": "metaImg",
+		"icon": "faQuestionCircle",
+		"color": "teal"
+	},
+	{
+		"name": "blog",
+		"link": "blog",
+		"title": "Blog",
+		"subtitle": "Build better products",
+		"description": "Build better products with more meaningful feedback.",
+		"image": "metaImg",
+		"icon": "faFileAlt",
+		"color": "blue"
+	},
+	{
+		"name": "about",
+		"link": "about",
+		"title": "About Us",
+		"subtitle": "Why we built Embarkable",
+		"description": "We built Embarkable to help get more meaningful feedback so you can build better products.",
+		"image": "metaImg",
+		"icon": "faInfoCircle",
+		"color": "gray"
+	}
+]

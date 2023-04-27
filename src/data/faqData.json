@@ -1,0 +1,51 @@
+[
+	{
+		"name": "trial",
+		"title": "How long is the free Embarkable trial?",
+		"subtitle": "",
+		"description": "Your free trial will last for 15 days from the time you start it.",
+		"id": "faq-trial"
+	},
+	{
+		"name": "credit",
+		"title": "Is a credit card required for a free trial?",
+		"subtitle": "",
+		"description": "No.",
+		"id": "faq-credit"
+	},
+	{
+		"name": "billing",
+		"title": "When will I be charged?",
+		"subtitle": "",
+		"description": "Your account will be charged each month based on the start date of your paid plan.",
+		"id": "faq-billing"
+	},
+	{
+		"name": "cancel",
+		"title": "How do I cancel my Embarkable subscription?",
+		"subtitle": "",
+		"description": "You may cancel your plan at any time. Once a plan is cancelled, we cancel all future billing. Your account will then be suspended at the end of your current billing cycle.",
+		"id": "faq-cancel"
+	},
+	{
+		"name": "privacy",
+		"title": "Do you sell my data?",
+		"subtitle": "",
+		"description": "No. Your data is yours. We will never share, sell or monetize your data in any way. ",
+		"id": "faq-privacy"
+	},	   
+	{
+		"name": "security",
+		"title": "Is my data secure?",
+		"subtitle": "",
+		"description": "Yes, Secure login and end to end SSL encryption ensure your data is secure.  While multi-zone backup and over 99% uptime ensures your ready to go",
+		"id": "faq-security"
+	},
+	{
+		"name": "cloud",
+		"title": "Do I need to download or install any software to use Embarkable?",
+		"subtitle": "",
+		"description": "No. Embarkable is accessed from any web browser and all data is stored securely in the cloud.",
+		"id": "faq-cloud"
+	}
+]

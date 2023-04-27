@@ -1,0 +1,17 @@
+[
+	{
+		"name": "trial",
+		"link": "/jetlinepro-signup",
+		"description": "jetlinepro signup page"
+	},
+	{
+		"name": "contact",
+		"link": "https://www.subscribepage.com/embarkable-contact",
+		"description": "mailerlite landing page contact"
+	},
+	{
+		"name": "subscribe",
+		"link": "https://www.subscribepage.com/jetlinepro-subscribe",
+		"description": "mailerlite landing page subscribe"
+	}
+]

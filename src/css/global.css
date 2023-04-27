@@ -1,0 +1,190 @@
+/* purgecss start ignore */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700;800&family=Berkshire+Swash&family=Kristi&family=Major+Mono+Display&family=Nova+Mono&family=Petit+Formal+Script&family=Russo+One&family=Syne+Mono&display=swap");
+
+.fontlogo {
+  font-family: "Major Mono Display", sans-serif;
+}
+
+.fontlabs {
+  font-family: "Ruso One", sans-serif;
+}
+
+.textBlock {
+  @apply max-w-6xl px-2 mx-auto text-center;
+}
+
+.textBlockLeft {
+  @apply max-w-6xl px-2 mx-auto text-left;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px black;
+}
+.text-shadow-md {
+  text-shadow: 4px 4px 8px black;
+}
+.text-shadow-lg {
+  text-shadow: 15px 15px 30px black;
+}
+.text-shadow-none {
+  text-shadow: none;
+}
+
+.text-gradient {
+  @apply text-transparent bg-clip-text;
+}
+
+.frame-gradient {
+  @apply bg-gradient-to-tr from-purple-400 to-pink-200;
+}
+
+.box-title {
+  @apply w-full mt-48 ml-32 h-128;
+}
+
+.box-image {
+  @apply w-1/3 mt-10 ml-4 h-80;
+}
+
+.box-overlay {
+  @apply w-2/3 mt-12 h-160;
+}
+
+/* react-modal */
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+/* markdown */
+.markdown {
+  @apply text-sm font-light leading-relaxed text-gray-700;
+}
+
+@screen sm {
+  .markdown {
+    @apply text-base text-gray-700;
+  }
+}
+
+@screen lg {
+  .markdown {
+    @apply text-base text-gray-700;
+  }
+}
+
+/* Headers */
+.markdown h1 {
+  @apply my-4 text-2xl;
+}
+.markdown h2 {
+  @apply my-2 text-xl font-semibold;
+}
+.markdown h3 {
+  @apply my-2 text-lg font-semibold;
+}
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply my-1 text-lg;
+}
+
+@screen sm {
+  .markdown h1 {
+    @apply my-4 text-3xl;
+  }
+  .markdown h2 {
+    @apply mt-4 text-2xl font-semibold;
+  }
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    @apply my-1 text-xl;
+  }
+}
+
+/* Links */
+.markdown a {
+  @apply text-blue-500;
+}
+.markdown a:hover {
+  @apply underline;
+}
+/* Image */
+.markdown img {
+  @apply object-cover w-full my-16 overflow-hidden rounded-xl h-80;
+}
+/* Paragraph */
+.markdown p {
+  @apply mb-4;
+}
+/* Lists */
+.markdown ul,
+.markdown ol {
+  @apply mb-4 ml-8;
+}
+.markdown li > p,
+.markdown li > ul,
+.markdown li > ol {
+  @apply mb-0;
+}
+.markdown ol {
+  @apply list-decimal;
+}
+.markdown ul {
+  @apply list-disc;
+}
+/* Blockquotes */
+.markdown blockquote {
+  @apply p-2 mx-6 mb-4 italic bg-gray-100 border-l-4 border-gray-400;
+}
+.markdown blockquote > p {
+  @apply mb-0;
+}
+/* Tables */
+.markdown td,
+.markdown th {
+  @apply px-2 py-1 border-gray-400;
+}
+.markdown tr:nth-child(odd) {
+  @apply bg-gray-100;
+}
+.markdown table {
+  @apply mb-6;
+}
+
+/* Wrap any inline highlights `that are really long`, but don't modify
+    the setting for codeblocks (inside ```), which are rendered in as:
+    <pre><code>...
+*/
+pre {
+  @apply p-2 mx-6 mb-4 text-white bg-black rounded-lg;
+}
+
+.markdown :not(pre) > code {
+  @apply px-2 bg-gray-300;
+}
+
+.markdown :not(pre) > code.language-text {
+  white-space: pre-line;
+}
+/* purgecss end ignore */
+
+/*
+background: linear-gradient(270deg, #91e5ff 0%, #1ad5ff 100%);
+background: linear-gradient(90deg, #0dc7ff 0%, #83f5fb 100%);
+background: linear-gradient(270deg, #5df0ff 0%, #7cc8cc 100%);
+*/
