@@ -11,7 +11,15 @@ import { getObjectFromArray } from "../utilities/arrayFunctions";
 import LogoBlock from "../components/LogoBlock";
 import IconButton from "../components/IconButton";
 
-function IndexPage() {
+function IndexPage({ location, search }) {
+  console.log(location.search);
+  const params = new URLSearchParams(location.search.match(/\?.*/)[0]);
+  const deveui = params.get("eui");
+  const appeui = params.get("dev");
+  const appkey = params.get("key");
+
+  // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy);}}
+
   const pageData = getObjectFromArray(
     landingPageData,
     "name",
@@ -22,52 +30,51 @@ function IndexPage() {
       {/*use default SEOfrom gatsby-config*/}
       <SEO title={pageData.SEO.title} image={imageLookup[pageData.SEO.image]} />
 
-      {/* <TitleBlockSplit
-				title={pageData.titleBlock.title}
-				subtitle={pageData.titleBlock.subtitle}
-				color={pageData.titleBlock.color}
-				image={pageData.titleBlock.image}
-				CTA={pageData.CTA}
-			/>	 */}
-
       <div className="relative h-screen overflow-hidden">
         <img
           className="absolute object-cover w-full h-full overflow-hidden"
           src={imageLookup.LandingPageImage}
         />
-        <div className="absolute w-full text-center text-blue-600 md:text-left md:max-w-xl md:left-1/10 top-1/5">
-          <LogoBlock />
-          <div className="mt-3 text-3xl drop-shadow-2xl md:text-6xl">
-            Where creativity meets innovation.
+        <div className="absolute flex flex-col w-full gap-6 p-6 top-1/5">
+          <div className="flex flex-col justify-center w-full h-40 p-5 bg-white rounded-md shadow-lg opacity-100">
+            New device found
           </div>
-        </div>
-        <div className="absolute bottom-0 flex justify-center w-full h-24 gap-4 md:h-40">
-          <IconButton
-            color="white"
-            isExternal
-            link="https://spruceirrigation.com/"
-          >
-            <img
-              className="object-cover overflow-hidden rounded-md"
-              src={imageLookup.Spruce}
-            />
-          </IconButton>
-          <IconButton color="white" isExternal link="https://embarkable.io/">
-            <img
-              className="object-cover p-2 overflow-hidden bg-white rounded-md"
-              src={imageLookup.Embarkable}
-            />
-          </IconButton>
-          <IconButton
-            color="white"
-            isExternal
-            link="https://www.linkedin.com/in/nathan-cauffman/"
-          >
-            <img
-              className="object-cover overflow-hidden rounded-md"
-              src={imageLookup.NathanIn}
-            />
-          </IconButton>
+          <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
+            <div>Device Eui {deveui}</div>
+            <div>appeui Eui {appeui}</div>
+            <div>appkey Eui {appkey}</div>
+          </div>
+          <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
+            Add to Helium Console
+          </div>
+          <div className="flex justify-center w-full gap-4 md:h-40">
+            <IconButton
+              color="white"
+              isExternal
+              link="https://spruceirrigation.com/"
+            >
+              <img
+                className="object-cover overflow-hidden rounded-md"
+                src={imageLookup.Spruce}
+              />
+            </IconButton>
+            <IconButton color="white" isExternal link="https://embarkable.io/">
+              <img
+                className="object-cover p-2 overflow-hidden bg-white rounded-md"
+                src={imageLookup.Embarkable}
+              />
+            </IconButton>
+            <IconButton
+              color="white"
+              isExternal
+              link="https://www.linkedin.com/in/nathan-cauffman/"
+            >
+              <img
+                className="object-cover overflow-hidden rounded-md"
+                src={imageLookup.NathanIn}
+              />
+            </IconButton>
+          </div>
         </div>
       </div>
     </Layout>

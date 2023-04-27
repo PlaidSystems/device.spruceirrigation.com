@@ -15,10 +15,22 @@ https://github.com/coreybutler/nvm-windows
 - use different version: nvm use 18.16.0
 
 Gatsby
+
 - npx gatsby develop
 
+Netlify Subdomain
+
+- create DNS entry in cpanel with: subdomain.domain.com. CNAME xxxx.netlify.app
+
+Netlify Gatsby build error
+
+- update env variables in Netlify to include:
+- node_version: Production 18
+- npm_flags: Production --legacy-peer-deps
+-
 
 Netlify
+
 - put functions in directory ../netlify/functions
 - use function for mailerlite subscribe
 - env variables go in Netlify web console

@@ -14,11 +14,11 @@ import embarkable from "../images/embarkable_logo-800.png";
 
 //ca
 
-import LandingPageImage from "../images/paper_boats-194094.jpg";
+import LandingPageImage from "../images/markus-spiske-sFydXGrt5OA-unsplash.jpg";
 
 export const imageLookup = {
   MetaImage: MetaImage,
-  LogoIcon: LogoIcon,
+  LogoIcon: spruce,
 
   Nathan: nathan,
   NathanIn: nathanin,
