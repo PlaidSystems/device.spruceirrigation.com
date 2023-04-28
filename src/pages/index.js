@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -13,10 +13,14 @@ import IconButton from "../components/IconButton";
 
 function IndexPage({ location, search }) {
   console.log(location.search);
+
+  const [NDEFScan, setNDEFScan] = useState(null);
+
   let model;
   let deveui;
   let appeui;
   let appkey;
+
   if (location.search) {
     const params = new URLSearchParams(location.search.match(/\?.*/)[0]);
     model = params.get("model");
@@ -34,28 +38,61 @@ function IndexPage({ location, search }) {
   );
 
   async function scan() {
-    console.log("User clicked scan button");
-
-    try {
-      const ndef = new Window.NDEFReader();
-      await ndef.scan();
-      console.log("> Scan started");
-
-      ndef.addEventListener("readingerror", () => {
-        console.log(
-          "Argh! Cannot read data from the NFC tag. Try another one?"
-        );
-      });
-
-      ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        console.log(`> Serial Number: ${serialNumber}`);
-        console.log(`> Records: (${message.records.length})`);
-
-        meow.play();
-      });
-    } catch (error) {
-      console.log("Argh! " + error);
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.scan();
+        ndef.onreading = (event) => {
+          const decoder = new TextDecoder();
+          for (const record of event.message.records) {
+            console.log("Record type:  " + record.recordType);
+            console.log("MIME type:    " + record.mediaType);
+            console.log("=== data ===\n" + decoder.decode(record.data));
+            setNDEFScan(decoder.decode(record.data));
+          }
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Web NFC is not supported.");
     }
+  }
+
+  async function writeTag() {
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.write("What Web Can Do Today");
+        console.log("NDEF message written!");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Web NFC is not supported.");
+    }
+    // console.log("User clicked scan button");
+
+    // try {
+    //   const ndef = new NDEFReader();
+    //   await ndef.scan();
+    //   console.log("> Scan started");
+
+    //   ndef.addEventListener("readingerror", () => {
+    //     console.log(
+    //       "Argh! Cannot read data from the NFC tag. Try another one?"
+    //     );
+    //   });
+
+    //   ndef.addEventListener("reading", ({ message, serialNumber }) => {
+    //     console.log(`> Serial Number: ${serialNumber}`);
+    //     console.log(`> Records: (${message.records.length})`);
+
+    //     meow.play();
+    //   });
+    // } catch (error) {
+    //   console.log("Argh! " + error);
+    // }
   }
 
   return (
@@ -71,12 +108,7 @@ function IndexPage({ location, search }) {
         <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto top-1/5 md:w-160">
           {location.search ? (
             <React.Fragment>
-              <div
-                onClick={() => {
-                  scan();
-                }}
-                className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100"
-              >
+              <div className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100">
                 New device found Add to Helium Share keys
               </div>
 
@@ -85,16 +117,20 @@ function IndexPage({ location, search }) {
                 <div>appeui Eui {appeui}</div>
                 <div>appkey Eui {appkey}</div>
               </div>
-              <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
-                Add to Helium
-              </div>
             </React.Fragment>
           ) : (
-            <div className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100">
+            <div
+              onClick={() => {
+                scan();
+              }}
+              className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100"
+            >
               Scan device with NFC reader
             </div>
           )}
-
+          <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
+            {NDEFScan}
+          </div>
           <div className="flex justify-center w-full gap-4 md:h-40">
             <IconButton
               color="white"
