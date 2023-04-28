@@ -34,28 +34,60 @@ function IndexPage({ location, search }) {
   );
 
   async function scan() {
-    console.log("User clicked scan button");
-
-    try {
-      const ndef = new Window.NDEFReader();
-      await ndef.scan();
-      console.log("> Scan started");
-
-      ndef.addEventListener("readingerror", () => {
-        console.log(
-          "Argh! Cannot read data from the NFC tag. Try another one?"
-        );
-      });
-
-      ndef.addEventListener("reading", ({ message, serialNumber }) => {
-        console.log(`> Serial Number: ${serialNumber}`);
-        console.log(`> Records: (${message.records.length})`);
-
-        meow.play();
-      });
-    } catch (error) {
-      console.log("Argh! " + error);
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.scan();
+        ndef.onreading = (event) => {
+          const decoder = new TextDecoder();
+          for (const record of event.message.records) {
+            console.log("Record type:  " + record.recordType);
+            console.log("MIME type:    " + record.mediaType);
+            console.log("=== data ===\n" + decoder.decode(record.data));
+          }
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Web NFC is not supported.");
     }
+  }
+
+  async function writeTag() {
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.write("What Web Can Do Today");
+        console.log("NDEF message written!");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Web NFC is not supported.");
+    }
+    // console.log("User clicked scan button");
+
+    // try {
+    //   const ndef = new NDEFReader();
+    //   await ndef.scan();
+    //   console.log("> Scan started");
+
+    //   ndef.addEventListener("readingerror", () => {
+    //     console.log(
+    //       "Argh! Cannot read data from the NFC tag. Try another one?"
+    //     );
+    //   });
+
+    //   ndef.addEventListener("reading", ({ message, serialNumber }) => {
+    //     console.log(`> Serial Number: ${serialNumber}`);
+    //     console.log(`> Records: (${message.records.length})`);
+
+    //     meow.play();
+    //   });
+    // } catch (error) {
+    //   console.log("Argh! " + error);
+    // }
   }
 
   return (
