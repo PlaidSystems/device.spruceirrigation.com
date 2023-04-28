@@ -95,6 +95,42 @@ function IndexPage({ location, search }) {
     // }
   }
 
+  async function writeTag() {
+    if ("NDEFReader" in window) {
+      const ndef = new NDEFReader();
+      try {
+        await ndef.write("What Web Can Do Today");
+        console.log("NDEF message written!");
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Web NFC is not supported.");
+    }
+    // console.log("User clicked scan button");
+
+    // try {
+    //   const ndef = new NDEFReader();
+    //   await ndef.scan();
+    //   console.log("> Scan started");
+
+    //   ndef.addEventListener("readingerror", () => {
+    //     console.log(
+    //       "Argh! Cannot read data from the NFC tag. Try another one?"
+    //     );
+    //   });
+
+    //   ndef.addEventListener("reading", ({ message, serialNumber }) => {
+    //     console.log(`> Serial Number: ${serialNumber}`);
+    //     console.log(`> Records: (${message.records.length})`);
+
+    //     meow.play();
+    //   });
+    // } catch (error) {
+    //   console.log("Argh! " + error);
+    // }
+  }
+
   return (
     <Layout header={pageData.SEO.title}>
       {/*use default SEOfrom gatsby-config*/}
