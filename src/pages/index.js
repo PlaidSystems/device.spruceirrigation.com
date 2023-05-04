@@ -13,7 +13,7 @@ import IconButton from "../components/IconButton";
 function IndexPage({ location, search }) {
   console.log(location.search);
 
-  const [NDEFScan, setNDEFScan] = useState(null);
+  const [NDEFScan, setNDEFScan] = useState([]);
 
   let model;
   let deveui;
