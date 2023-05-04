@@ -13,7 +13,14 @@ import IconButton from "../components/IconButton";
 function IndexPage({ location, search }) {
   console.log(location.search);
 
-  const [NDEFScan, setNDEFScan] = useState(["test", "test", "thsyjflkd"]);
+  const [NDEFScan, setNDEFScan] = useState([
+    "https://www.device.spruceirrigation.com",
+    "6081F942CCE66854",
+    "6081F962248666AE",
+    "F876C1026FC4695D7BAC5143522A0065",
+    "15,15",
+    "1,1,1,0,0,1,1,0,0",
+  ]);
 
   let model;
   let deveui;
@@ -64,7 +71,34 @@ function IndexPage({ location, search }) {
     if ("NDEFReader" in window) {
       const ndef = new NDEFReader();
       try {
-        await ndef.write("What Web Can Do Today");
+        await ndef.write({
+          records: [
+            {
+              recordType: "url",
+              data: "https://www.device.spruceirrigation.com",
+            },
+            {
+              recordType: "text",
+              data: "6081F942CCE66854",
+            },
+            {
+              recordType: "text",
+              data: "6081F962248666AE",
+            },
+            {
+              recordType: "text",
+              data: "F876C1026FC4695D7BAC5143522A0065",
+            },
+            {
+              recordType: "text",
+              data: "15,15",
+            },
+            {
+              recordType: "text",
+              data: "1,1,1,0,0,1,1,0,0",
+            },
+          ],
+        });
         console.log("NDEF message written!");
       } catch (error) {
         console.log(error);
@@ -85,16 +119,16 @@ function IndexPage({ location, search }) {
           src={imageLookup.LandingPageImage}
         /> */}
         <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto top-1/5 md:w-160">
-          {location.search ? (
+          {NDEFScan[0] ? (
             <React.Fragment>
               <div className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100">
                 New device found Add to Helium Share keys
               </div>
 
               <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
-                <div>Device Eui {deveui}</div>
-                <div>appeui Eui {appeui}</div>
-                <div>appkey Eui {appkey}</div>
+                <div>Device Eui {NDEFScan[1]}</div>
+                <div>appeui Eui {NDEFScan[2]}</div>
+                <div>appkey Eui {NDEFScan[3]}</div>
               </div>
             </React.Fragment>
           ) : (
