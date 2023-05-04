@@ -8,7 +8,6 @@ import landingPageData from "../data/embarkablePageData";
 import { imageLookup } from "../utilities/imageLookup";
 import { getObjectFromArray } from "../utilities/arrayFunctions";
 
-import LogoBlock from "../components/LogoBlock";
 import IconButton from "../components/IconButton";
 
 function IndexPage({ location, search }) {
@@ -43,13 +42,15 @@ function IndexPage({ location, search }) {
       try {
         await ndef.scan();
         ndef.onreading = (event) => {
+          let recordArray = [];
           const decoder = new TextDecoder();
           for (const record of event.message.records) {
             console.log("Record type:  " + record.recordType);
             console.log("MIME type:    " + record.mediaType);
             console.log("=== data ===\n" + decoder.decode(record.data));
-            setNDEFScan(decoder.decode(record.data));
+            recordArray.push(decoder.decode(record.data));
           }
+          setNDEFScan(recordArray);
         };
       } catch (error) {
         console.log(error);
@@ -71,28 +72,6 @@ function IndexPage({ location, search }) {
     } else {
       console.log("Web NFC is not supported.");
     }
-    // console.log("User clicked scan button");
-
-    // try {
-    //   const ndef = new NDEFReader();
-    //   await ndef.scan();
-    //   console.log("> Scan started");
-
-    //   ndef.addEventListener("readingerror", () => {
-    //     console.log(
-    //       "Argh! Cannot read data from the NFC tag. Try another one?"
-    //     );
-    //   });
-
-    //   ndef.addEventListener("reading", ({ message, serialNumber }) => {
-    //     console.log(`> Serial Number: ${serialNumber}`);
-    //     console.log(`> Records: (${message.records.length})`);
-
-    //     meow.play();
-    //   });
-    // } catch (error) {
-    //   console.log("Argh! " + error);
-    // }
   }
 
   return (
@@ -129,7 +108,9 @@ function IndexPage({ location, search }) {
             </div>
           )}
           <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
-            {NDEFScan}
+            {NDEFScan.map((record) => (
+              <div>{record}</div>
+            ))}
           </div>
           <div className="flex justify-center w-full gap-4 md:h-40">
             <IconButton
