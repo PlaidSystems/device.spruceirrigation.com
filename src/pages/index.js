@@ -13,7 +13,7 @@ import IconButton from "../components/IconButton";
 function IndexPage({ location, search }) {
   console.log(location.search);
 
-  const [NDEFScan, setNDEFScan] = useState([]);
+  const [NDEFScan, setNDEFScan] = useState(["test", "test", "thsyjflkd"]);
 
   let model;
   let deveui;
@@ -79,11 +79,11 @@ function IndexPage({ location, search }) {
       {/*use default SEOfrom gatsby-config*/}
       <SEO title={pageData.SEO.title} image={imageLookup[pageData.SEO.image]} />
 
-      <div className="relative h-screen overflow-hidden">
-        <img
+      <div className="relative h-screen overflow-hidden bg-slate-50">
+        {/* <img
           className="absolute object-cover w-full h-full overflow-hidden"
           src={imageLookup.LandingPageImage}
-        />
+        /> */}
         <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto top-1/5 md:w-160">
           {location.search ? (
             <React.Fragment>
@@ -98,18 +98,33 @@ function IndexPage({ location, search }) {
               </div>
             </React.Fragment>
           ) : (
-            <div
-              onClick={() => {
-                scan();
-              }}
-              className="flex flex-col justify-center w-full h-40 p-5 text-center bg-white rounded-md shadow-lg opacity-100"
-            >
-              Scan device with NFC reader
-            </div>
+            <React.Fragment>
+              <div
+                onClick={() => {
+                  scan();
+                }}
+                className="flex flex-col justify-center w-full h-40 p-5 text-center bg-green-300 rounded-md shadow-lg opacity-100"
+              >
+                Scan device with NFC reader
+              </div>
+              <div
+                onClick={() => {
+                  writeTag();
+                }}
+                className="flex flex-col justify-center w-full h-20 p-5 text-center bg-green-300 rounded-md shadow-lg opacity-100"
+              >
+                Write Tag
+              </div>
+            </React.Fragment>
           )}
-          <div className="flex flex-col justify-center w-full h-20 p-5 rounded-md shadow-2xl opacity-100 bg-lime-400">
+          <div className="flex flex-col justify-center w-full h-auto gap-3">
+            <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
+              {NDEFScan[0]}
+            </div>
             {NDEFScan.map((record) => (
-              <div>{record}</div>
+              <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
+                {record}
+              </div>
             ))}
           </div>
           <div className="flex justify-center w-full gap-4 md:h-40">
