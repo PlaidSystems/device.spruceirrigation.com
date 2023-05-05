@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -23,6 +23,7 @@ function IndexPage({ location, search }) {
   ];
 
   const [NDEFScan, setNDEFScan] = useState([]);
+  const [nfcMessage, setNfcMessage] = useState(null);
 
   let model;
   let deveui;
@@ -37,6 +38,9 @@ function IndexPage({ location, search }) {
     appkey = params.get("key");
   }
 
+  // useEffect(() => {
+
+  // }, [NDEFScan]);
   // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy);}}
 
   const pageData = getObjectFromArray(
@@ -47,6 +51,7 @@ function IndexPage({ location, search }) {
 
   async function scan() {
     if ("NDEFReader" in window) {
+      setNfcMessage("NFC Scan");
       const ndef = new NDEFReader();
       try {
         await ndef.scan();
@@ -60,11 +65,13 @@ function IndexPage({ location, search }) {
             recordArray.push(decoder.decode(record.data));
           }
           setNDEFScan(recordArray);
+          setNfcMessage("");
         };
       } catch (error) {
         console.log(error);
       }
     } else {
+      setNfcMessage("NFC is not supported");
       console.log("Web NFC is not supported.");
     }
   }
@@ -72,6 +79,7 @@ function IndexPage({ location, search }) {
   async function writeTag() {
     if ("NDEFReader" in window) {
       const ndef = new NDEFReader();
+      setNfcMessage("NFC Write");
       try {
         await ndef.write({
           records: [
@@ -101,11 +109,13 @@ function IndexPage({ location, search }) {
             },
           ],
         });
+        setNfcMessage("");
         console.log("NDEF message written!");
       } catch (error) {
         console.log(error);
       }
     } else {
+      setNfcMessage("NFC is not supported");
       console.log("Web NFC is not supported.");
     }
   }
@@ -120,6 +130,11 @@ function IndexPage({ location, search }) {
           className="absolute object-cover w-full h-full overflow-hidden"
           src={imageLookup.LandingPageImage}
         /> */}
+        {nfcMessage && (
+          <div className="absolute z-10 flex justify-center w-full py-5 bg-red-300 bottom-1/5">
+            {nfcMessage}
+          </div>
+        )}
         <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto md:w-160">
           {NDEFScan[1] && (
             <React.Fragment>
