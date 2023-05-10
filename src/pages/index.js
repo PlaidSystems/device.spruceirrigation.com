@@ -51,7 +51,7 @@ function IndexPage({ location, search }) {
 
   async function scan() {
     if ("NDEFReader" in window) {
-      setNfcMessage("NFC Scan");
+      setNfcMessage("Scan device now");
       const ndef = new NDEFReader();
       try {
         await ndef.scan();
@@ -62,7 +62,8 @@ function IndexPage({ location, search }) {
             console.log("Record type:  " + record.recordType);
             console.log("MIME type:    " + record.mediaType);
             console.log("=== data ===\n" + decoder.decode(record.data));
-            recordArray.push(decoder.decode(record.data));
+            // recordArray.push(decoder.decode(record.data));
+            recordArray.push(decoder.decode(record));
           }
           setNDEFScan(recordArray);
           setNfcMessage("");
@@ -79,7 +80,7 @@ function IndexPage({ location, search }) {
   async function writeTag() {
     if ("NDEFReader" in window) {
       const ndef = new NDEFReader();
-      setNfcMessage("NFC Write");
+      setNfcMessage("Write to device now");
       try {
         await ndef.write({
           records: [
@@ -142,6 +143,13 @@ function IndexPage({ location, search }) {
                 <div>Device Eui {NDEFScan[1]}</div>
                 <div>appeui Eui {NDEFScan[2]}</div>
                 <div>appkey Eui {NDEFScan[3]}</div>
+              </div>
+            </React.Fragment>
+          )}
+          {NDEFScan && (
+            <React.Fragment>
+              <div className="flex flex-col w-full p-5 break-words bg-white rounded-md shadow-lg opacity-100 text">
+                <div>{NDEFScan}</div>
               </div>
             </React.Fragment>
           )}
