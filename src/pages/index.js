@@ -18,8 +18,12 @@ function IndexPage({ location, search }) {
     "6081F942CCE66854",
     "6081F962248666AE",
     "F876C1026FC4695D7BAC5143522A0065",
-    "15,15",
-    "1,1,1,0,0,1,1,0,0",
+    "on",
+    "join",
+    "21.2",
+    "65",
+    "3200",
+    "2100",
   ];
 
   const [NDEFScan, setNDEFScan] = useState([]);
@@ -126,16 +130,45 @@ function IndexPage({ location, search }) {
       <SEO title={pageData.SEO.title} image={imageLookup[pageData.SEO.image]} />
 
       <div className="relative h-screen overflow-hidden bg-slate-50">
-        {/* <img
-          className="absolute object-cover w-full h-full overflow-hidden"
-          src={imageLookup.LandingPageImage}
-        /> */}
         {nfcMessage && (
           <div className="absolute z-10 flex justify-center w-full py-5 bg-red-300 bottom-1/5">
             {nfcMessage}
           </div>
         )}
         <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto md:w-160">
+          {NDEFScan[4] !== "on" && (
+            <IconButton
+              color="white"
+              isExternal
+              link="https://spruceirrigation.com/"
+            >
+              <img
+                className="object-cover overflow-hidden rounded-md"
+                src={imageLookup.Spruce}
+              />
+            </IconButton>
+          )}
+
+          {NDEFScan[6] && (
+            <React.Fragment>
+              <div className="flex flex-col justify-center p-5 m-auto bg-white rounded-lg shadow-lg opacity-100 w-80 h-80">
+                <div className="text-center text-green-600 text-7xl">
+                  {NDEFScan[6]}
+                  <span className="text-3xl">%</span>
+                </div>
+                <div className="text-xl text-center">Soil Moisture</div>
+              </div>
+            </React.Fragment>
+          )}
+
+          {NDEFScan[7] && (
+            <React.Fragment>
+              <div className="flex flex-col justify-center p-5 m-auto bg-white rounded-lg shadow-lg opacity-100 w-80">
+                <div className="text-center">Temperature {NDEFScan[7]}F</div>
+              </div>
+            </React.Fragment>
+          )}
+
           {NDEFScan[1] && (
             <React.Fragment>
               <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
@@ -157,11 +190,6 @@ function IndexPage({ location, search }) {
                 {NDEFScan[5]}
               </div>
             )}
-            {/* {NDEFScan.map((record) => (
-              <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
-                {record}
-              </div>
-            ))} */}
           </div>
           <React.Fragment>
             <div
