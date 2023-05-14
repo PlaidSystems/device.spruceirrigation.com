@@ -89,47 +89,47 @@ function IndexPage({ location, search }) {
           records: [
             {
               recordType: "url",
-              id: 1,
+              id: "1",
               data: "https://www.device.spruceirrigation.com",
             },
             {
               recordType: "text",
-              id: 2,
+              id: "2",
               data: "6081F942CCE66854",
             },
             {
               recordType: "text",
-              id: 3,
+              id: "3",
               data: "6081F962248666AE",
             },
             {
               recordType: "text",
-              id: 4,
+              id: "4",
               data: "F876C1026FC4695D7BAC5143522A0065",
             },
             {
               recordType: "text",
-              id: 5,
+              id: "5",
               data: "0",
             },
             {
               recordType: "text",
-              id: 6,
+              id: "6",
               data: "0",
             },
             {
               recordType: "text",
-              id: 7,
+              id: "7",
               data: "NICKNAME",
             },
             {
               recordType: "text",
-              id: 8,
+              id: '8",
               data: "1515",
             },
             {
               recordType: "text",
-              id: 9,
+              id: "9",
               data: "21008",
             },
           ],
