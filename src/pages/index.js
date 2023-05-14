@@ -89,27 +89,48 @@ function IndexPage({ location, search }) {
           records: [
             {
               recordType: "url",
+              id: 1,
               data: "https://www.device.spruceirrigation.com",
             },
             {
               recordType: "text",
+              id: 2,
               data: "6081F942CCE66854",
             },
             {
               recordType: "text",
+              id: 3,
               data: "6081F962248666AE",
             },
             {
               recordType: "text",
+              id: 4,
               data: "F876C1026FC4695D7BAC5143522A0065",
             },
             {
               recordType: "text",
-              data: "15,15",
+              id: 5,
+              data: "0",
             },
             {
               recordType: "text",
-              data: "1,1,1,0,0,1,1,0,0",
+              id: 6,
+              data: "0",
+            },
+            {
+              recordType: "text",
+              id: 7,
+              data: "NICKNAME",
+            },
+            {
+              recordType: "text",
+              id: 8,
+              data: "1515",
+            },
+            {
+              recordType: "text",
+              id: 9,
+              data: "21008",
             },
           ],
         });
@@ -172,22 +193,27 @@ function IndexPage({ location, search }) {
           {NDEFScan[1] && (
             <React.Fragment>
               <div className="flex flex-col justify-center w-full p-5 bg-white rounded-md shadow-lg opacity-100">
-                <div>Device Eui {NDEFScan[1]}</div>
-                <div>appeui Eui {NDEFScan[2]}</div>
-                <div>appkey Eui {NDEFScan[3]}</div>
+                <div>Device Eui {NDEFScan[2]}</div>
+                <div>appeui Eui {NDEFScan[3]}</div>
+                <div>appkey Eui {NDEFScan[4]}</div>
               </div>
             </React.Fragment>
           )}
 
           <div className="flex flex-col justify-center w-full h-auto gap-3">
-            {NDEFScan[4] && (
+            {NDEFScan[7] && (
               <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
-                {NDEFScan[4]}
+                {NDEFScan[7]}
               </div>
             )}
-            {NDEFScan[5] && (
+            {NDEFScan[8] && (
               <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
-                {NDEFScan[5]}
+                {NDEFScan[8]}
+              </div>
+            )}
+            {NDEFScan[9] && (
+              <div className="flex flex-col justify-center w-full p-2 rounded-md shadow-2xl opacity-100 bg-slate-300">
+                {NDEFScan[9]}
               </div>
             )}
           </div>
