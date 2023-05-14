@@ -124,7 +124,7 @@ function IndexPage({ location, search }) {
             },
             {
               recordType: "text",
-              id: '8",
+              id: "8",
               data: "1515",
             },
             {
