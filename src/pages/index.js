@@ -94,42 +94,42 @@ function IndexPage({ location, search }) {
             {
               recordType: "text",
               id: "2",
-              data: "6081F942CCE66854",
+              data: NDEFScan[1],
             },
             {
               recordType: "text",
               id: "3",
-              data: "6081F962248666AE",
+              data: NDEFScan[2],
             },
             {
               recordType: "text",
               id: "4",
-              data: "F876C1026FC4695D7BAC5143522A0065",
+              data: NDEFScan[3],
             },
             {
               recordType: "text",
               id: "5",
-              data: "0",
+              data: NDEFScan[4],
             },
             {
               recordType: "text",
               id: "6",
-              data: "0",
+              data: NDEFScan[5],
             },
             {
               recordType: "text",
               id: "7",
-              data: "NICKNAME",
+              data: NDEFScan[6],
             },
             {
               recordType: "text",
               id: "8",
-              data: "1515",
+              data: NDEFScan[7],
             },
             {
               recordType: "text",
               id: "9",
-              data: "21008",
+              data: NDEFScan[8],
             },
           ],
         });
@@ -157,7 +157,7 @@ function IndexPage({ location, search }) {
         )}
         {NDEFScan[0] && (
           <React.Fragment>
-            <div className="absolute bottom-0 flex flex-col justify-center w-full gap-6 p-6 mx-auto md:w-160">
+            <div className="absolute flex flex-col justify-center w-full gap-6 p-6 mx-auto bottom-1/10 md:w-160">
               <div
                 onClick={() => {
                   writeTag();
