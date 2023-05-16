@@ -164,8 +164,8 @@ function IndexPage({ location, search }) {
                 }}
                 className="flex flex-col self-center justify-center h-20 p-5 mx-auto text-center rounded-md shadow-lg bg-slate-300 w-80"
               >
-                {NDEFScan[5] === 0 ? (
-                  "Activate Device"
+                {NDEFScan[5] === "0" ? (
+                  <span className="text-slate-700">Activate Device</span>
                 ) : (
                   <span className="text-red-300">De-activate Device</span>
                 )}
