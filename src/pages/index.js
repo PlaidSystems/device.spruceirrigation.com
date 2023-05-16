@@ -114,7 +114,7 @@ function IndexPage({ location, search }) {
             {
               recordType: "text",
               id: "6",
-              data: NDEFScan[5],
+              data: "1",
             },
             {
               recordType: "text",
