@@ -37,12 +37,13 @@ function IndexPage({ location, search }) {
     "21008",
   ];
 
+  const [NDEFRecords, setNDEFRecords] = useState([]);
   const [NDEFScan, setNDEFScan] = useState([]);
   const [nfcMessage, setNfcMessage] = useState(null);
 
   const [measurement, setMeasurement] = useState(null);
   const [interval, setInterval] = useState(null);
-  const [reportonchange, setReportOnChange] = useState(false);
+  const [reportOnChange, setReportOnChange] = useState(false);
 
   let model;
   let deveui;
@@ -84,6 +85,7 @@ function IndexPage({ location, search }) {
             recordArray.push(decoder.decode(record.data));
           }
           setNDEFScan(recordArray);
+          setNDEFRecords(event.message.records);
           setNfcMessage("");
         };
       } catch (error) {
@@ -101,7 +103,7 @@ function IndexPage({ location, search }) {
       setNfcMessage("Write to device now");
       try {
         await ndef.write({
-          NDEFScan,
+          NDEFRecords,
           // records: [
           //   {
           //     recordType: "url",
@@ -190,7 +192,7 @@ function IndexPage({ location, search }) {
     //const target = event.target
     const name = event.target.name;
     const value = event.target.value;
-    console.log(value);
+    console.log(event.target);
     switch (name) {
       case "measurement":
         setMeasurement(value);
@@ -199,7 +201,11 @@ function IndexPage({ location, search }) {
         setInterval(value);
         break;
       case "onchange":
-        setReportOnChange(!reportonchange);
+        NDEFRecords[9] = {
+          recordType: "text",
+          data: value === true ? "1" : "0",
+        };
+        setReportOnChange(!value);
         break;
       // case 'password':
       //   setPassword(value);
@@ -213,7 +219,7 @@ function IndexPage({ location, search }) {
       default:
         break;
     }
-    console.log(reportonchange);
+    console.log(NDEFRecords);
   }
 
   return (
@@ -382,10 +388,10 @@ function IndexPage({ location, search }) {
                   <input
                     type="checkbox"
                     className="w-6 p-1 mx-3 text-center rounded-md bg-slate-300 text-md"
-                    placeholder={NDEFScan[8] & 1}
+                    // placeholder={NDEFScan[8] & 1}
                     name="onchange"
                     onChange={inputChange}
-                    checked={reportonchange}
+                    value={reportOnChange}
                   />
                 </div>
               </div>
