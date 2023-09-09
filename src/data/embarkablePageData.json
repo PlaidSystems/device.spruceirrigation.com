@@ -1,12 +1,12 @@
 [
   {
-    "name": "embarkablelabs",
-    "title": "Product development lab",
-    "subtitle": "EmbarkableLabs",
-    "description": "Product development lab",
+    "name": "Harmony Analytica",
+    "title": "Sensor Network",
+    "subtitle": "Sensors",
+    "description": "Sensor Network",
     "icon": "rocket.png",
     "SEO": {
-      "title": "Product development lab",
+      "title": "Harmony",
       "image": "MetaImage"
     },
     "titleBlock": {
