@@ -38,7 +38,7 @@ function IndexPage({ location, search }) {
   ];
 
   // const [NDEFRecords, setNDEFRecords] = useState([]);
-  const [NDEFScan, setNDEFScan] = useState(test);
+  const [NDEFScan, setNDEFScan] = useState([]);
   const [nfcMessage, setNfcMessage] = useState(null);
 
   const [measurement, setMeasurement] = useState(null);
