@@ -4,7 +4,7 @@
     "title": "Sensor Network",
     "subtitle": "Sensors",
     "description": "Sensor Network",
-    "icon": "rocket.png",
+    "icon": "DROP_SQUARE.png",
     "SEO": {
       "title": "Harmony",
       "image": "MetaImage"
@@ -13,7 +13,7 @@
       "title": "Build better products with more meaningful feedback.",
       "subtitle": "Embarkable is the user feedback platform that goes beyond up-votes to provide insightful, actionable user feedback.",
       "text": "Embarkable is a central repository for your user feedback. Engage with users to find out what they need - and why.",
-      "color": "bg-blue-200",
+      "color": "bg-purple-500 text-white",
       "image": "MeaningfulFeedbackGIF",
       "CTAButtonText": "Try it free"
     },

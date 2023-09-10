@@ -308,9 +308,9 @@ function IndexPage({ location, search }) {
             onClick={() => {
               scan();
             }}
-            className="flex justify-center p-5 mx-auto mt-40 bg-green-300 rounded-lg shadow-lg w-80 h-80"
+            className="flex justify-center p-5 mx-auto mt-40 bg-purple-500 rounded-lg shadow-lg w-80 h-80"
           >
-            <div className="flex self-center text-4xl text-center text-black">
+            <div className="flex self-center text-4xl text-center text-white">
               Scan device with NFC
             </div>
           </div>
@@ -323,7 +323,6 @@ function IndexPage({ location, search }) {
                 <div className="text-xs text-left">Name</div>
                 <div className="text-3xl text-center text-green-600 bg-slate-300">
                   {NDEFScan[4]}
-                  {NDEFRecords}
                 </div>
 
                 <div className="mt-2 text-center text-sms text-slate-700">
