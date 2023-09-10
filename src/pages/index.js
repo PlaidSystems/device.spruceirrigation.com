@@ -106,7 +106,6 @@ function IndexPage({ location, search }) {
 
       try {
         await ndef.write({
-          NDEFRecords,
           records: [
             {
               recordType: "url",
