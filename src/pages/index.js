@@ -22,7 +22,7 @@ function IndexPage({ location, search }) {
     "on",
     "2" /*measure */,
     "10" /*report*/,
-    "0" /* reportomcahnge */,
+    "1" /* reportomcahnge */,
     "2" /* erport port */,
     "117" /* fields */,
     "0" /* setscale */,
@@ -37,13 +37,15 @@ function IndexPage({ location, search }) {
     "21008",
   ];
 
-  const [NDEFRecords, setNDEFRecords] = useState([]);
-  const [NDEFScan, setNDEFScan] = useState([]);
+  // const [NDEFRecords, setNDEFRecords] = useState([]);
+  const [NDEFScan, setNDEFScan] = useState(test);
   const [nfcMessage, setNfcMessage] = useState(null);
 
   const [measurement, setMeasurement] = useState(null);
   const [interval, setInterval] = useState(null);
-  const [reportOnChange, setReportOnChange] = useState(false);
+  const [reportOnChange, setReportOnChange] = useState(
+    NDEFScan[8] === "1" ? true : false
+  );
 
   let model;
   let deveui;
@@ -85,7 +87,6 @@ function IndexPage({ location, search }) {
             recordArray.push(decoder.decode(record.data));
           }
           setNDEFScan(recordArray);
-          setNDEFRecords(event.message.records);
           setNfcMessage("");
         };
       } catch (error) {
@@ -97,60 +98,101 @@ function IndexPage({ location, search }) {
     }
   }
 
-  async function writeTag() {
+  async function writeTag(event) {
+    console.log(event);
     if ("NDEFReader" in window) {
       const ndef = new NDEFReader();
       setNfcMessage("Write to device now");
+
       try {
         await ndef.write({
           NDEFRecords,
-          // records: [
-          //   {
-          //     recordType: "url",
-          //     id: "1",
-          //     data: "https://www.device.spruceirrigation.com",
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "2",
-          //     data: NDEFScan[1],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "3",
-          //     data: NDEFScan[2],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "4",
-          //     data: NDEFScan[3],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "5",
-          //     data: NDEFScan[4],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "6",
-          //     data: "1",
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "7",
-          //     data: NDEFScan[6],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "8",
-          //     data: NDEFScan[7],
-          //   },
-          //   {
-          //     recordType: "text",
-          //     id: "9",
-          //     data: NDEFScan[8],
-          //   },
-          // ],
+          records: [
+            {
+              recordType: "url",
+              data: NDEFScan[0],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[1],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[2],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[3],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[4],
+            },
+            {
+              recordType: "text",
+              data: event,
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[6],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[7],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[8],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[9],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[10],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[11],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[12],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[13],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[14],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[15],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[16],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[17],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[18],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[19],
+            },
+            {
+              recordType: "text",
+              data: NDEFScan[20],
+            },
+          ],
         });
         setNfcMessage("Done");
         console.log("NDEF message written!");
@@ -195,17 +237,16 @@ function IndexPage({ location, search }) {
     console.log(event.target);
     switch (name) {
       case "measurement":
-        setMeasurement(value);
+        NDEFScan[6] = value;
+        // setMeasurement(value);
         break;
       case "interval":
-        setInterval(value);
+        NDEFScan[7] = value;
+        // setInterval(value);
         break;
       case "onchange":
-        NDEFRecords[9] = {
-          recordType: "text",
-          data: value === true ? "1" : "0",
-        };
-        setReportOnChange(!value);
+        NDEFScan[8] = value === true ? "1" : "0";
+        setReportOnChange(!reportOnChange);
         break;
       // case 'password':
       //   setPassword(value);
@@ -219,7 +260,8 @@ function IndexPage({ location, search }) {
       default:
         break;
     }
-    console.log(NDEFRecords);
+    setNDEFScan(NDEFScan);
+    console.log(NDEFScan);
   }
 
   return (
@@ -240,7 +282,7 @@ function IndexPage({ location, search }) {
             <div className="absolute flex flex-row justify-center w-full gap-6 p-4 mx-auto bottom-1/10 md:w-160">
               <div
                 onClick={() => {
-                  writeTag();
+                  writeTag("on");
                 }}
                 className="flex flex-col self-center justify-center w-64 h-20 p-5 mx-auto text-center rounded-md shadow-lg bg-slate-300"
               >
@@ -262,7 +304,7 @@ function IndexPage({ location, search }) {
             <div className="absolute bottom-0 flex flex-row items-stretch justify-between w-full gap-2 p-4">
               <div
                 onClick={() => {
-                  writeTag();
+                  writeTag("off");
                 }}
                 className="flex w-full h-12 p-3 text-center bg-red-300 rounded-md shadow-lg justify-self-stretch"
               >
@@ -388,10 +430,10 @@ function IndexPage({ location, search }) {
                   <input
                     type="checkbox"
                     className="w-6 p-1 mx-3 text-center rounded-md bg-slate-300 text-md"
-                    // placeholder={NDEFScan[8] & 1}
+                    checked={reportOnChange}
                     name="onchange"
                     onChange={inputChange}
-                    value={reportOnChange}
+                    value={!reportOnChange}
                   />
                 </div>
               </div>

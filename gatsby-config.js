@@ -13,7 +13,7 @@ module.exports = {
     description: landingPageData[0].description,
     url: "https://embarkablelabs.com",
     siteUrl: `https://embarkable.io`,
-    author: `EmbarkableLabs`,
+    author: `Harmony`,
     //put default image in static folder
     image: `images/embarkable-build-better.webp`,
   },
@@ -24,8 +24,8 @@ module.exports = {
       //options for mobile home screen
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `EmbarkableLabs`,
-        short_name: `EmbarkableLabs`,
+        name: `Harmony`,
+        short_name: `Harmony`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#4dc0b5`,
@@ -40,7 +40,7 @@ module.exports = {
         https: true,
         www: false,
         SymLinksIfOwnerMatch: true,
-        host: "embarkablelabs.com", // if 'www' is set to 'false', be sure to also remove it here!
+        host: "harmonyanalytica.com", // if 'www' is set to 'false', be sure to also remove it here!
         ErrorDocument: `
 				ErrorDocument 401 /404.html
 				ErrorDocument 404 /404.html
