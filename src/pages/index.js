@@ -244,7 +244,7 @@ function IndexPage({ location, search }) {
                 }}
                 className="flex flex-col self-center justify-center w-64 h-20 p-5 mx-auto text-center rounded-md shadow-lg bg-slate-300"
               >
-                {NDEFScan[5] !== "off" ? (
+                {NDEFScan[5] === "off" ? (
                   <span className="text-slate-700">Turn On Device</span>
                 ) : (
                   <span className="text-red-300">Write to Device</span>
@@ -323,6 +323,7 @@ function IndexPage({ location, search }) {
                 <div className="text-xs text-left">Name</div>
                 <div className="text-3xl text-center text-green-600 bg-slate-300">
                   {NDEFScan[4]}
+                  {NDEFRecords}
                 </div>
 
                 <div className="mt-2 text-center text-sms text-slate-700">
